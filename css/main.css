@@ -1,0 +1,62 @@
+body{
+background-color: rgba(1, 5, 5, 0.938);
+color: #fff;
+} 
+h1
+{
+  color: #fff;  
+}
+p
+{
+color: #fff;
+font-size: 24;
+
+}
+.c{
+
+    margin:10px;
+    color: #fff;
+}
+.c2
+{
+    color: #fff;
+}
+
+.cle
+{
+    clear:both;
+}
+.btn
+{
+    margin-top: 10px;
+    background-color:#a00d02;
+    border:1px solid #fff ;
+    color: #fff;
+    padding: 2;
+}
+.btn2
+{
+    
+    width: 100%;
+    background-color: rgb(46, 5, 121);
+    color: #fff;
+}
+.btn3
+{
+    width: 40%;
+    background-color: rgb(46, 5, 121);
+    color: #fff;
+}
+.btn4
+{
+    width: 40%;
+    background-color: rgb(46, 5, 121);
+    color: #fff;
+    margin-left: 182px;
+
+
+}
+#btnTotal::before
+{
+    content: "total:";
+}

@@ -1,0 +1,91 @@
+<html>
+
+<head>
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="container">
+<h1 class="text-center">CRUDS</h1>
+<p class="text-center">CREATE READ UPDATE DELETE SEARCH</p>
+
+<div class="form-Inputs">
+
+    <div class=" input-gp">
+        
+        <input id="productTitle" class="inputsProduct c2 w-100 bg-black mb-3 " type="text" name="inputs" placeholder="Title">
+   </div>
+
+    <div class="input-gp">
+        <input id="productPrices"onkeyup="getTotal()" class="c bg-black mb-3 float-end  inputsProduct" type="number" name="inputs" placeholder="price">
+    </div>
+
+    <div class=" input-gp">
+        <input id="productTaxes"onkeyup="getTotal()" class="c bg-black mb-3 float-end inputsProduct" type="number" name="inputs" placeholder="taxes">
+    </div>
+
+    <div class="input-gp ">
+        <input id="productAds" onkeyup="getTotal()" class="c bg-black mb-3 float-end inputsProduct" type="number" name="inputs" placeholder="ads">
+    </div>
+
+    <div class="input-gp">
+        <input id="productDisCount" onkeyup="getTotal()" class="c bg-black mb-3 float-end inputsProduct" type="number" name="inputs" placeholder="discount">
+    </div>
+
+    <button id="btnTotal" class=" inputsProduct  btn"></button>
+
+    <div class=" input-gp">
+        <input id="productCount" class="c2 w-100 bg-black mb-3 inputsProduct" type="number" name="inputs" placeholder="count">
+    </div>
+
+    <div class=" input-gp">
+        <input id="productCategorys" class="c2 w-100 bg-black mb-3 inputsProduct" type="text" name="inputs" placeholder="category">
+    </div>
+
+    <button id="btnCreate" class="c2 btn2 text-center mb-3">Create</button>
+
+    
+
+    <div class=" input-gp">
+        <input id="productSearch" class="c2 w-100 bg-black mb-3 inputsProduct" type="text" name="inputs" placeholder="search">
+    </div>
+    
+    <button id="btnSearchTitle" class="c2 btn3 text-center mb-3 flex-row">Search By Title</button>
+
+    <button id="btnSearchCaregory" class="c2 btn4 text-center mb-3 flex-row-reverse">Search By category</button>
+
+    <button id="productDeleteAli" class="c2 btn2 text-center mb-3"></button>
+    <div class="cle"></div>
+    
+</div>
+
+<div class="data">
+    <table class="table table-striped text-Light">
+        <thead>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>PRICE</th>
+            <th>TAXES</th>
+            <th>ADS</th>
+            <th>DISCOUNT</th>
+            <th>TOTAL</th>
+            <th>CATEGORY</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+</div>
+
+</div>
+
+
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
