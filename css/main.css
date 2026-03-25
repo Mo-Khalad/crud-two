@@ -6,57 +6,47 @@ h1
 {
   color: #fff;  
 }
-p
-{
-color: #fff;
-font-size: 24;
-
+p{
+  color: #fff;
+  font-size: 24;
 }
-.c{
-
-    margin:10px;
-    color: #fff;
+.productPrices{
+  margin:10px;   
+  color: #fff;
 }
-.c2
-{
-    color: #fff;
+.inputsProduct ,.productTaxes ,.productDisCount ,.btnCreate{
+  color: #fff;
+  margin: 5px;
 }
-
-.cle
-{
+.cle{
     clear:both;
 }
-.btn
-{
-    margin-top: 10px;
+#btnTotal{
+    margin-top: 5px;
+    margin-left: 22px;
     background-color:#a00d02;
     border:1px solid #fff ;
     color: #fff;
-    padding: 2;
+    padding: 3px;
+    padding-right: 6px;
 }
-.btn2
-{
-    
+#btnCreate ,#productDeleteAli ,.update ,.delete{
     width: 100%;
     background-color: rgb(46, 5, 121);
     color: #fff;
 }
-.btn3
-{
+#btnSearchTitle ,#btnSearchCategory {
     width: 40%;
     background-color: rgb(46, 5, 121);
     color: #fff;
 }
-.btn4
-{
-    width: 40%;
-    background-color: rgb(46, 5, 121);
-    color: #fff;
-    margin-left: 182px;
-
-
+#btnTotal::before{ 
+    content: " Total :  ";
 }
-#btnTotal::before
-{
-    content: "total:";
+#error{
+    background-color: rgba(255, 0, 0, 0.171);
+    font-size: 15px;
+    text-align: center;
+    padding: 3px;
+    opacity: 0;
 }

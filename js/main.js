@@ -5,111 +5,99 @@ var productAds=document.getElementById("productAds");
 var productDisCount=document.getElementById("productDisCount");
 var productCount=document.getElementById("productCount");
 var btnTotal=document.getElementById("btnTotal")
-var productCategorys=document.getElementById("productCategorys");
+var productCategory=document.getElementById("productCategory");
 var btnCreate=document.getElementById("btnCreate");
 var btnSearchTitle=document.getElementById("btnSearchTitle");
 var productSearch=document.getElementById("productSearch");
+var error=document.getElementById('error')
 var productDeleteAli=document.getElementById('productDeleteAli');
-var btnSearchCategory=document.getElementById("btnSearchCaregory");
+var btnSearchCategory=document.getElementById("btnSearchCategory");
 var inputs=document.getElementsByClassName("inputsProduct");
 var input;
 var val;
 var products=[];
 
-
-function getTotal()
-{
-
-    if( productPrices.value!="")
-    {
+function getTotal(){
+    if( productPrices.value!=""){
         var result=(+productAds.value+ +productPrices.value + +productTaxes.value )- +productDisCount.value;
-
         btnTotal.innerHTML=result;
         btnTotal.style.backgroundColor="#040";
     }
-    else
-    {
-        btnTotal.innerHTML="";
+    else{
+        btnTotal.innerHTML="0";
         btnTotal.style.backgroundColor="#a00d02";
     }
 }
 
-
-
-if(JSON.parse( localStorage.getItem("productsList"))!=null)
-{
+if(JSON.parse( localStorage.getItem("productsList"))!=null){
 products=JSON.parse( localStorage.getItem("productsList"))
 }
 displayProduct();
 
-btnCreate.onclick=function()
-{
-    if(productTitle.value!="")
-    {
-    if(btnCreate.innerHTML=='Create')
-    {
-    addProduct();
-    clear();
+btnCreate.onclick=function(){
+    
+if(productTitle.value!=""){
+        error.style.opacity ='0'
 
-    }
+      if(productPrices.value!=""){
+         error.style.opacity ='0'
 
-    else
-    {
-        updates(input);
-        btnCreate.innerHTML="Create";
-        productCount.style.display="block";
-        clear();
+         if(productCategory.value!=""){
+             error.style.opacity ='0'
+             if(btnCreate.innerHTML=='Create'){
+             addProduct();
+             clear();
+        }
+        } else {
+        error.style.opacity ='1'
+        error.innerHTML = 'Category Is Required'
+      }
 
-    }
-
+      }else {
+        error.style.opacity ='1'
+        error.innerHTML = 'Price Is Required'
+      }
 }
 
+else { 
+    error.style.opacity ='1'
+    error.innerHTML='Title Is Required';
+    
+}
     displayProduct();
-    getTotal();
-    
-    
+    getTotal(); 
 }
 
-function addProduct()
-{
-    var product=
-    {
+function addProduct(){
+    var product={
         title:productTitle.value,
         price:productPrices.value,
         taxes:productTaxes.value,
         ads:productAds.value,
         discount:productDisCount.value,
         count:productCount.value,
-        category:productCategorys.value,
+        category:productCategory.value,
         total:btnTotal.innerHTML,
     }
    
-
-if(productCount.value!="")
-{
+if(productCount.value!=""){
     for(var i=0;i<productCount.value;i++)
     {
       products.push(product);
     }
 }
 
-else
-{
+else{
     products.push(product);
 
 }
-
-
     localStorage.setItem("productsList",JSON.stringify(products))
-
 }
 
-function displayProduct()
-{
-
+function displayProduct(){
     var trs='';
-    for(var i=0;i<products.length;i++)
-    {
+
+    for(var i=0;i<products.length;i++){
         trs+=
         `
         <tr >
@@ -121,119 +109,79 @@ function displayProduct()
         <td class="text-Light">${products[i].discount}</td>
         <td class="text-Light">${products[i].total}</td>
         <td class="text-Light">${products[i].category}</td>
-        <td><button onclick="deleteProduct(${i})" class ="btn2">delete</button></td>
-        <td><button onclick="updateProduct(${i})" class ="btn2">update</button></td>
-
+        <td><button onclick="deleteProduct(${i})" class ="delete">delete</button></td>
+        <td><button onclick="updateProduct(${i})" class ="update">update</button></td>
        </tr>
         `
         }
         
-
     document.getElementById("tableBody").innerHTML=trs;
 
-    if(products.length>0)
-    {
-       
-    productDeleteAli.innerHTML='delete Ali'
+    if(products.length>0){
+      productDeleteAli.innerHTML='delete Ali'
     }
 
-    else
-    {
-        
-    productDeleteAli.innerHTML='';
-       
-
+    else{
+      productDeleteAli.innerHTML='';
     }
 }
 
-function updateProduct(index)
-{
+function updateProduct(index){
    productTitle.value= products[index].title; 
    productPrices.value= products[index].price;
    productTaxes.value= products[index].taxes;
-   productCategorys.value= products[index].category;
+   productCategory.value= products[index].category;
    productAds.value= products[index].ads;
    productDisCount.value= products[index].discount;
    getTotal();
-
-input=index;
-   btnCreate.innerHTML="update";
-productCount.style.display="none";
-
+    input=index;
+    btnCreate.innerHTML="update";
+    productCount.style.display="none";
 }
 
-function clear()
-{
-    for(var i=0;i<inputs.length;i++)
-    {
+function clear(){
+    for(var i=0;i<inputs.length;i++){
         inputs[i].value='';
-
     }
-
 }
 
-function deleteProduct(index)
-{
+function deleteProduct(index){
   products.splice(index,1)
   displayProduct();
   localStorage.setItem("productsList",JSON.stringify(products))
 
 }
 
- productDeleteAli.onclick=function()
-{
+ productDeleteAli.onclick=function(){
    localStorage.clear()
-
    products.splice(0,)
    displayProduct();
-
-//localStorage.setItem("productsList",JSON.stringify(products))
-//displayProduct();
 }
 
-function updates(i)
-{
-    var product=
-    {
+function updates(i){
+    var product={
         title:productTitle.value,
         price:productPrices.value,
         taxes:productTaxes.value,
         ads:productAds.value,
         discount:productDisCount.value,
         count:productCount.value,
-        category:productCategorys.value,
+        category:productCategory.value,
         total:btnTotal.innerHTML,
     }
-
-  // 
-
-
-
-products[i]=product;
-    localStorage.setItem("productsList",JSON.stringify(products))
-
-    
-
+     products[i]=product;
+     localStorage.setItem("productsList",JSON.stringify(products))
 }    
 
-
-
-productSearch.onkeyup=function()
-{
+productSearch.onkeyup=function(){
   val=productSearch.value;  
 }
 
-
-btnSearchCategory.onclick=function()
-{
-
+btnSearchCategory.onclick=function(){
     var trs='';
-    for(var i=0;i<products.length;i++)
-    {
-        if(products[i].category.includes(val))
-   {
-        trs+=
-        `
+    for(var i=0;i<products.length;i++){
+        if(products[i].category.includes(val)){
+        trs+=`
         <tr >
         <td class="text-Light">${i+1}</td>
         <td class="text-Light">${products[i].title}</td>
@@ -243,29 +191,21 @@ btnSearchCategory.onclick=function()
         <td class="text-Light">${products[i].discount}</td>
         <td class="text-Light">${products[i].total}</td>
         <td class="text-Light">${products[i].category}</td>
-        <td><button onclick="deleteProduct(${i})" class ="btn2">delete</button></td>
-        <td><button onclick="updateProduct(${i})" class ="btn2">update</button></td>
-
+        <td><button onclick="deleteProduct(${i})" class ="delete">delete</button></td>
+        <td><button onclick="updateProduct(${i})" class ="update">update</button></td>
        </tr>
         `
         }
-        
-
-    document.getElementById("tableBody").innerHTML=trs;
-
+      document.getElementById("tableBody").innerHTML=trs;
    }
 }
 
-btnSearchTitle.onclick=function()
-{
+btnSearchTitle.onclick=function(){
     var trs='';
-    for(var i=0;i<products.length;i++)
-    {
+    for(var i=0;i<products.length;i++){
         getTotal();
-        if(products[i].title.toLowerCase().includes(val.toLowerCase()))
-   {
-        trs+=
-        `
+        if(products[i].title.toLowerCase().includes(val.toLowerCase())){
+        trs+= `
         <tr >
         <td class="text-Light">${i+1}</td>
         <td class="text-Light">${products[i].title}</td>
@@ -275,17 +215,14 @@ btnSearchTitle.onclick=function()
         <td class="text-Light">${products[i].discount}</td>
         <td class="text-Light">${products[i].total}</td>
         <td class="text-Light">${products[i].category}</td>
-        <td><button onclick="deleteProduct(${i})" class ="btn2">delete</button></td>
-        <td><button onclick="updateProduct(${i})" class ="btn2">update</button></td>
-
+        <td><button onclick="deleteProduct(${i})" class ="delete">delete</button></td>
+        <td><button onclick="updateProduct(${i})" class ="update">update</button></td>
        </tr>
         `
         }
         
-
-    document.getElementById("tableBody").innerHTML=trs;
+        document.getElementById("tableBody").innerHTML=trs;
    }
-
 }
 
 
