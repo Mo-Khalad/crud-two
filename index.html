@@ -1,82 +1,86 @@
 <html>
 
 <head>
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/bootstrap.rtl.min.css">
-<link rel="stylesheet" href="css/main.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.rtl.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
 </head>
 
 <body>
-    <div class="container">
-      <h1 class="text-center">CRUDS</h1>
-      <p class="text-center">CREATE READ UPDATE DELETE SEARCH</p>
-        <div class="form-Inputs">
-            <div class="input-gp">        
-                <input id="productTitle" class="inputsProduct w-100 bg-black mb-3 " type="text" name="inputs" placeholder="Title">
-            </div>
-         
 
-            <div class="input-gp mx-3">
-                <input id="productPrices"onkeyup="getTotal()" class="bg-black mb-3 float-end  inputsProduct" type="number" name="inputs" placeholder="price">
-            </div>
-
-            <div class="input-gp mx=3">
-                <input id="productTaxes"onkeyup="getTotal()" class="bg-black mb-3 float-end inputsProduct" type="number" name="inputs" placeholder="taxes">
-            </div>
-
-            <div class="input-gp mx-3">
-                <input id="productAds" onkeyup="getTotal()" class="bg-black mb-3 float-end inputsProduct" type="number" name="inputs" placeholder="ads">
-            </div>
-
-            <div class="input-gp mx-3">
-                <input id="productDisCount" onkeyup="getTotal()" class="bg-black mb-3 float-end inputsProduct" type="number" name="inputs" placeholder="discount">
-            </div>
-
-           <button id="btnTotal" class="inputsProduct"></button>
-
-            <div class="nput-gp">
-                <input id="productCount" class="w-100 bg-black mb-3 inputsProduct" type="number" name="inputs" placeholder="count">
-            </div>
-
-            <div class="input-gp">
-                <input id="productCategory" class="w-100 bg-black mb-3 inputsProduct" type="text" name="inputs" placeholder="category">
-            </div>
-
-            <button id="btnCreate" class="text-center mb-3">Create</button>
-             <p id="error"></p>
-            <div class="input-gp">
-                <input id="productSearch" class="w-100 bg-black mb-3 inputsProduct" type="text" name="inputs" placeholder="search">
-            </div>
-            <div class="d-flex justify-content-between">
-                <button id="btnSearchTitle" class="text-center mb-3 flex-row">Search By Title</button>
-                <button id="btnSearchCategory" class="text-center mb-3 flex-row-reverse">Search By category</button>
-            </div>
+    <div class="CRUD">
+        <div>
+            <h1 class="text-center">CRUD</h1>
+            <p class="text-center">CREATE READ UPDATE DELETE SEARCH</p>
+        </div>   
+        
+            <div class="form-Inputs text-center">
+                <div class="input-gp">        
+                    <input id="productTitle" class="w-100 inputsProduct bg-black mb-3" type="text" name="inputs" placeholder="Title">
+                </div>
             
-            <button id="productDeleteAli" class="text-center mb-3"></button>
-            <div class="cle"></div>
-            
-        </div>
+                <div class="input-gp">
+                    <input id="productPrice"onkeyup="getTotal()" class="bg-black mb-3 float-end inputsProduct" type="number" name="inputs" placeholder="price">
+                </div>
 
-        <div class="data">
-            <table class="table table-striped text-Light">
-                <thead>
-                    <th>ID</th>
-                    <th>TITLE</th>
-                    <th>PRICE</th>
-                    <th>TAXES</th>
-                    <th>ADS</th>
-                    <th>DISCOUNT</th>
-                    <th>TOTAL</th>
-                    <th>CATEGORY</th>
-                    <th>UPDATE</th>
-                    <th>DELETE</th>
-                </thead>
-                <tbody id="tableBody"></tbody>
-            </table>
-        </div>
-    </div>
+                <div class="input-gp">
+                    <input id="productTaxes"onkeyup="getTotal()" class="bg-black mb-3 float-end inputsProduct" type="number" name="inputs" placeholder="taxes">
+                </div>
 
+                <div class="input-gp">
+                    <input id="productAds" onkeyup="getTotal()" class="bg-black mb-3 float-end inputsProduct" type="number" name="inputs" placeholder="ads">
+                </div>
+
+                <div class="input-gp mb-2">
+                    <input id="productDisCount" onkeyup="getTotal()" class="bg-black mb-3 float-end inputsProduct" type="number" name="inputs" placeholder="discount">
+                </div>
+
+                <div class="mt-2">
+                    <span id="totalPrice" class="px-3">0</span>
+                </div>               
+               
+                <div class="input-gp mt-3">
+                    <input id="productCount" class="w-100 bg-black mb-3 inputsProduct" type="number" name="inputs" placeholder="count">
+                </div>
+
+                <div class="input-gp">
+                    <input id="productCategory" class="w-100 bg-black mb-3 inputsProduct" type="text" name="inputs" placeholder="category">
+                </div>
+
+                <button id="btnCreate" class="text-center mb-3">Create</button>
+                <p id="error"></p>
+                    <div id="search" class="input-gp d-none">
+                        <input id="productSearch" class="w-100 bg-black mb-3 inputsProduct" type="text" name="inputs" placeholder="search">
+                    </div>
+                    <div id="searchBtns" class="d-flex justify-content-between flex-wrap d-none">
+                        <button id="btnSearchTitle" class="text-center mb-3 flex-row">Search By Title</button>
+                        <button id="btnSearchCategory" class="text-center mb-3 flex-row-reverse">Search By category</button>
+                        <button id="productDeleteAll" class="text-center mb-3"></button>
+                    </div>
+                    
+                    <div class="cle"></div>
+            </div>
+
+            <div id="data" class="data d-none">
+                <table class="table table-striped text-Light">
+                    <thead>
+                        <th>ID</th>
+                        <th>TITLE</th>
+                        <th>PRICE</th>
+                        <th>TAXES</th>
+                        <th>ADS</th>
+                        <th>DISCOUNT</th>
+                        <th>TOTAL</th>
+                        <th>CATEGORY</th>
+                        <th>UPDATE</th>
+                        <th>DELETE</th>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+            <h1 id="noResults" class="text-center d-none">No Results Found</h1>
+    </div> 
 
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>

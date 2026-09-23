@@ -1,17 +1,19 @@
 body{
-background-color: rgba(1, 5, 5, 0.938);
-color: #fff;
+  background-color: rgba(1, 5, 5, 0.938);
+  color: #fff;
+}
+.CRUD{
+  width: 90%;
+  margin: auto;
 } 
-h1
-{
+h1{
   color: #fff;  
 }
 p{
   color: #fff;
   font-size: 24;
 }
-.productPrices{
-  margin:10px;   
+.productPrice{   
   color: #fff;
 }
 .inputsProduct ,.productTaxes ,.productDisCount ,.btnCreate{
@@ -21,32 +23,89 @@ p{
 .cle{
     clear:both;
 }
-#btnTotal{
-    margin-top: 5px;
-    margin-left: 22px;
-    background-color:#a00d02;
-    border:1px solid #fff ;
-    color: #fff;
-    padding: 3px;
-    padding-right: 6px;
-}
-#btnCreate ,#productDeleteAli ,.update ,.delete{
+#totalPrice{
+  display: inline-block;
+  background-color:#a00d02;
+  border:1px solid #fff ;
+  color: #fff;
+  padding: 5px;
+  padding-right: 6px;
+  width: 150px;
+  max-width: 150px !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+} 
+#btnCreate ,#productDeleteAll ,.edit ,.delete{
     width: 100%;
     background-color: rgb(46, 5, 121);
     color: #fff;
 }
-#btnSearchTitle ,#btnSearchCategory {
+#btnSearchTitle ,#btnSearchCategory{
     width: 40%;
     background-color: rgb(46, 5, 121);
     color: #fff;
 }
-#btnTotal::before{ 
-    content: " Total :  ";
+#totalPrice::before{ 
+    content: " Total : ";
 }
-#error{
+#error ,#noResults{
     background-color: rgba(255, 0, 0, 0.171);
-    font-size: 15px;
+    font-size: 20px;
     text-align: center;
     padding: 3px;
-    opacity: 0;
+}
+#error{
+  opacity: 0;
+}
+th ,td ,.edit ,.delete{
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+@media screen and (max-width:569px){
+  .CRUD{
+    width: 96%;
+    margin:initial;
+  }
+  #btnSearchTitle ,#btnSearchCategory ,#btnCreate ,#productDeleteAll{
+    width: 90%;
+    margin: auto;
+  }
+  .inputsProduct{
+    width: 100% !important;
+    height: 35px;
+    padding: 3px;
+    border-radius: 2px;
+  }
+  p{
+    font-size: 20;
+  }
+  th ,td ,.edit ,.delete{
+    max-width: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .edit ,.delete{
+    max-width: 30px;
+  }
+  #error ,#noResults{
+    width: 95%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+}
+@media screen and (min-width:570px) and (max-width:769px) {
+  th ,td ,.edit ,.delete{
+    max-width: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  #totalPrice{
+    width: 150px;
+    max-width: 150px !important;
+  }
 }
